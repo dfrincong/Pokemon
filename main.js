@@ -27,12 +27,15 @@
 // });
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
-let myPokemon = document.querySelector("#myPokemon");
+let myPokemon = document.querySelector(".cajaPokemon");
 
 const cambiarId = (id)=>{
     fetch(url + `${id}/`)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => {
+            mostrarPokemon(data);
+            console.log(data);
+        });
 };
 
 const mostrar = (cantidad)=>{
@@ -41,4 +44,15 @@ const mostrar = (cantidad)=>{
     }
 };
 
-mostrar(3);
+const mostrarPokemon = (pokemon)=>{
+    myPokemon.insertAdjacentHTML("beforeend", `
+    <div class="pokemon-block">
+        <div class="imagen-container">
+            <img src="${pokemon.sprites.front_default}">
+        </div>
+        <p>${pokemon.id}</p>
+        <p class="name">${pokemon.name}</p>
+    </div>`);
+};
+
+mostrar(10);
