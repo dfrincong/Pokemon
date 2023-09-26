@@ -27,7 +27,7 @@
 // });
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
-let myPokemon = document.querySelector(".cajaPokemon");
+const myPokemones = document.querySelector(".cajaPokemones");
 
 const cambiarId = (id)=>{
     fetch(url + `${id}/`)
@@ -45,14 +45,38 @@ const mostrar = (cantidad)=>{
 };
 
 const mostrarPokemon = (pokemon)=>{
-    myPokemon.insertAdjacentHTML("beforeend", `
-    <div class="pokemon-block">
-        <div class="imagen-container">
+    myPokemones.insertAdjacentHTML("beforeend", `
+    <div class="cajaPokemon">
+        <div class="cajaImagen">
             <img src="${pokemon.sprites.front_default}">
         </div>
-        <p>${pokemon.id}</p>
-        <p class="name">${pokemon.name}</p>
+        <button class="nombre">${pokemon.name}</button>
     </div>`);
+    
+    const myPokemon = document.querySelectorAll(".nombre");
+    console.log(myPokemon);
+    myPokemon.addEventListener("click", async()=> {
+        let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif" 
+        Swal.fire({
+            title: `${pokemon.name}`,
+            text: 'Modal with a custom image.',
+            // imageUrl: `${pokemon.sprites.front_default}`,
+            imageUrl:  `${(img) ?  img : defaultImg}`,
+            html: `
+                ${pokemon.stats.map(data=>`
+                    <input 
+                        type="range" 
+                        id="uno" 
+                        value="${data.base_stat}">
+                    <label for="uno"> 
+                        ${data.base_stat} 
+                        ${data.stat.name}</label><br>
+                        `).join("")}   
+            `,
+            imageWidth: "80%",
+            imageHeight: "80%",
+        });
+    });
 };
 
-mostrar(10);
+mostrar(3);
