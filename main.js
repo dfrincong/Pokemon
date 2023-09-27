@@ -19,15 +19,15 @@ const mostrarPokemon = (pokemon)=>{
         <div class="cajaImagen">
             <img src="${pokemon.sprites.front_default}">
         </div>
-        <p class="nombre">${pokemon.name}</p>
+        <button class="nombre">${pokemon.name}</button>
     </div>`);
 
-    const click = document.querySelectorAll(".cajaPokemon");
+    const click = document.querySelectorAll(".nombre");
     console.log(click);
     click.forEach(element => {
         console.log(element);
         element.addEventListener("click",()=>{
-            let img = pokemon.sprites.front_default;
+            let img = pokemon.sprites.other.home.front_default;
             let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif";
             Swal.fire({
                 title: `${pokemon.name}`,
@@ -45,11 +45,12 @@ const mostrarPokemon = (pokemon)=>{
                             ${data.stat.name}</label><br>
                             `).join("")}   
                 `,
-                imageWidth: "100%",
-                imageHeight: "100%",
+                imageWidth: "60%",
+                imageHeight: "80%",
+                background: "lightblue",
             });
         });
     });
 };
 
-mostrar(1);
+mostrar(7);
