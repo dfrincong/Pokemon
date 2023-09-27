@@ -1,41 +1,10 @@
-// let myPokemon = document.querySelector("#myPokemon");
-
-// myPokemon.addEventListener("click", async()=> {
-//     let res = await (await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")).json();
-//     let img = res.sprites.front_default;
-//     let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif" 
-
-//     Swal.fire({
-//         title: `${res.name}`,
-//         text: 'Modal with a custom image.',
-//         // imageUrl: `${res.sprites.front_default}`,
-//         imageUrl:  `${(img) ?  img : defaultImg}`,
-//         html: `
-//             ${res.stats.map(data=>`
-//                 <input 
-//                     type="range" 
-//                     id="uno" 
-//                     value="${data.base_stat}">
-//                 <label for="uno"> 
-//                     ${data.base_stat} 
-//                     ${data.stat.name}</label><br>
-//                     `).join("")}   
-//         `,
-//         imageWidth: "80%",
-//         imageHeight: "80%",
-//     });
-// });
-
 const url = "https://pokeapi.co/api/v2/pokemon/";
 const myPokemones = document.querySelector(".cajaPokemones");
 
-const cambiarId = (id)=>{
-    fetch(url + `${id}/`)
-        .then(res => res.json())
-        .then(data => {
-            mostrarPokemon(data);
-            console.log(data);
-        });
+const cambiarId = async(id)=>{
+    let data = await (await fetch(url + `${id}/`)).json();
+    console.log(data);
+    mostrarPokemon(data);
 };
 
 const mostrar = (cantidad)=>{
@@ -50,33 +19,37 @@ const mostrarPokemon = (pokemon)=>{
         <div class="cajaImagen">
             <img src="${pokemon.sprites.front_default}">
         </div>
-        <button class="nombre">${pokemon.name}</button>
+        <p class="nombre">${pokemon.name}</p>
     </div>`);
-    
-    const myPokemon = document.querySelectorAll(".nombre");
-    console.log(myPokemon);
-    myPokemon.addEventListener("click", async()=> {
-        let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif" 
-        Swal.fire({
-            title: `${pokemon.name}`,
-            text: 'Modal with a custom image.',
-            // imageUrl: `${pokemon.sprites.front_default}`,
-            imageUrl:  `${(img) ?  img : defaultImg}`,
-            html: `
-                ${pokemon.stats.map(data=>`
-                    <input 
-                        type="range" 
-                        id="uno" 
-                        value="${data.base_stat}">
-                    <label for="uno"> 
-                        ${data.base_stat} 
-                        ${data.stat.name}</label><br>
-                        `).join("")}   
-            `,
-            imageWidth: "80%",
-            imageHeight: "80%",
+
+    const click = document.querySelectorAll(".cajaPokemon");
+    console.log(click);
+    click.forEach(element => {
+        console.log(element);
+        element.addEventListener("click",()=>{
+            let img = pokemon.sprites.front_default;
+            let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif";
+            Swal.fire({
+                title: `${pokemon.name}`,
+                text: 'Modal with a custom image.',
+                imageUrl:  `${(img) ?  img : defaultImg}`,
+                html: `
+                    ${pokemon.stats.map(data=>`
+                        <input 
+                            type="range" 
+                            id="${data.stat.name}" 
+                            value="${data.base_stat}"
+                            max="200">
+                        <label for="${data.stat.name}"> 
+                            ${data.base_stat} 
+                            ${data.stat.name}</label><br>
+                            `).join("")}   
+                `,
+                imageWidth: "100%",
+                imageHeight: "100%",
+            });
         });
     });
 };
 
-mostrar(3);
+mostrar(1);
