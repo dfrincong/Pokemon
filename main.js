@@ -25,6 +25,8 @@ const mostrarPokemon = (pokemon)=>{
 
 document.addEventListener("click", async (e)=>{
     // console.log(e.target);
+
+    // .matches (Similar a querySelector)
     if(e.target.matches(".nombre")){
         let pokemon = await (await fetch(url + `${e.target.dataset.name}/`)).json();
         let img = pokemon.sprites.other.home.front_default;
@@ -51,7 +53,5 @@ document.addEventListener("click", async (e)=>{
     }
 
 })
-
-
 
 mostrar(7);
