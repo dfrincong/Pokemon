@@ -1,6 +1,20 @@
 const url = "https://pokeapi.co/api/v2/pokemon/";
+const urlMockApi = "https://650ee92e54d18aabfe999cc6.mockapi.io/pokemon/";
 const myPokemones = document.querySelector(".cajaPokemones");
 
+
+// para enviar informacion a mockapi
+const enviar =  async()=>{
+    let config = {
+        method: "POST",
+        headers: {"content-type":"application/json"},
+        body: JSON.stringify(estadistica)
+    };
+    let res = await (await fetch(urlMockApi, config)).json();
+    console.log(res);
+};
+
+// FUNCIONNALIDADES PARA MOSTRAR POKEMONES
 const cambiarId = async(id)=>{
     let data = await (await fetch(url + `${id}/`)).json();
     // console.log(data);
@@ -51,7 +65,12 @@ document.addEventListener("click", async (e)=>{
             imageWidth: "60%",
             imageHeight: "80%",
             background: "lightblue",
+            cancelButtonText: 'Visto',
+            showCancelButton: true,
+            confirmButtonText: 'Modificar',
+            reverseButtons: true
         });
+
         // HACER LA ESTADISTICA INTERACTIVA
         const rangoInputs = document.querySelectorAll('input[type="range"]');
         rangoInputs.forEach(entrada => {
