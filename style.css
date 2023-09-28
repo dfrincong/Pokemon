@@ -22,4 +22,5 @@ button.nombre {
     padding: 7px;
     border: 2px solid #000;
     border-radius: 10px;
+    cursor: pointer;
 }

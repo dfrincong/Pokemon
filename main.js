@@ -23,6 +23,8 @@ const mostrarPokemon = (pokemon)=>{
     </div>`);
 };
 
+
+// MOSTRAR TARJETA DE ESTADÏSTICAS
 document.addEventListener("click", async (e)=>{
     // console.log(e.target);
 
@@ -44,14 +46,24 @@ document.addEventListener("click", async (e)=>{
                     <label for="${data.stat.name}"> 
                         ${data.base_stat} 
                         ${data.stat.name}</label><br>
-                        `).join("")}   
+                        `).join("")}
             `,
             imageWidth: "60%",
             imageHeight: "80%",
             background: "lightblue",
         });
-    }
+        // HACER LA ESTADISTICA INTERACTIVA
+        const rangoInputs = document.querySelectorAll('input[type="range"]');
+        rangoInputs.forEach(entrada => {
+            // console.log(entrada);
+            const statName = entrada.id;
+            entrada.addEventListener('input', (e)=>{
+                // console.log(e.target.value);
+                const label = document.querySelector(`label[for="${statName}"]`);
+                label.textContent = entrada.value + " " + statName;
+            });
+        });
+    };
+});
 
-})
-
-mostrar(7);
+mostrar(9);
