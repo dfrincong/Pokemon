@@ -7,8 +7,8 @@
 - Editar estadísticas de los pokemones: `<input type="range>"`
 - Enviar información de las estadisticas modificadas: `MockAPi"`
 
-## ¿Cómo utilizar?
-> A continuación se detalla como usar la página.
+## ¿Cómo funciona?
+> A continuación se detalla como funciona la página.
 
 ### 1. Visualizar pokemones
 
