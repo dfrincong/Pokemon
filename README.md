@@ -1,14 +1,39 @@
 # Pokemon
-> Página para visualizar las imagenes de pokemones, observar sus estadisticas y modificarlas.
+Pokemon es una página web interactiva que permite visualizar las imágenes y el nombre de los pokemones, el nombre de los pokemones es un botón que al darle click, abre una ventana de dialogo en la que se puede observar las habilidades y/o estadísticas del pokemon seleccionado y estas pueden modificarse moviendo las barras que allí se observan y posteriormente guardarlas.
 
-## Funcionalidades
-> Se pueden realizar las siguientes acciones con los datos:
-- Visualizar pokemones y sus estadísticas: `PokéApi y SweetAlert2`
-- Editar estadísticas de los pokemones: `<input type="range>"`
-- Enviar información de las estadisticas modificadas: `MockAPi"`
+> Ver los pokemones
 
-## ¿Cómo funciona?
-> A continuación se detalla como funciona la página.
+![verPokemon](img/verPokemones.png)
+
+> Stats de los pokemones
+
+![statsPokemon](img/statsPokemon.png)
+
+> Stats modificadas de los pokemones
+
+![statsModificadas](img/statsModificadas.png)
+
+> [Ver proyecto](https://dfrincong.github.io/Pokemon/ )
+
+## Características
+
+* Se escogen la cantidad de pokemones que se quieren ver
+* Se miran las estadísticas de los pokemones de forma interactiva
+* Se puede cambiar las estadísticas de los pokemones y guardarlas
+
+## ¿Cómo verlo?
+1.	Se clona el repositorio
+2.	Se abre el proyecto
+3.	Se ejecuta index.html en la web
+
+## Tecnologías usadas
+-	html
+-	css
+-	js 
+-	biblioteca Swal de sweetalert2
+
+## Recursos útiles
+> A continuación se detallan algunos recursos para la realización del proyecto.
 
 ### 1. Visualizar pokemones
 
@@ -28,29 +53,7 @@ document.addEventListener("click", async (e)=>{
         let pokemon = await (await fetch(url + `${e.target.dataset.name}/`)).json();
         let img = pokemon.sprites.other.home.front_default;
         let defaultImg = "https://i.pinimg.com/originals/27/ae/5f/27ae5f34f585523fc884c2d479731e16.gif";
-        Swal.fire({
-            title: `${pokemon.name}`,
-            imageUrl:  `${(img) ?  img : defaultImg}`,
-            html: `
-                ${pokemon.stats.map(data=>`
-                    <input 
-                        type="range" 
-                        id="${data.stat.name}" 
-                        value="${data.base_stat}"
-                        max="200">
-                    <label for="${data.stat.name}"> 
-                        ${data.base_stat} 
-                        ${data.stat.name}</label><br>
-                        `).join("")}
-            `,
-            imageWidth: "60%",
-            imageHeight: "80%",
-            background: "lightblue",
-            cancelButtonText: 'Visto',
-            showCancelButton: true,
-            confirmButtonText: 'Modificar',
-            reverseButtons: true
-        });
+        Swal.fire()
 ```
 
 ---
@@ -76,3 +79,6 @@ const enviar =  async(estadistica)=>{
     console.log(res);
 };
 ```
+
+## Autor
+> Daniel Felipe Rincón Guerrero
