@@ -24,3 +24,7 @@ button.nombre {
     border-radius: 10px;
     cursor: pointer;
 }
+
+.swal2-html-container {
+    margin: 0 auto;
+}
