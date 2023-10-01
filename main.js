@@ -1,7 +1,7 @@
 const url = "https://pokeapi.co/api/v2/pokemon/";
 const urlMockApi = "https://650ee92e54d18aabfe999cc6.mockapi.io/pokemon/";
 const myPokemones = document.querySelector(".cajaPokemones");
-let n = Number(prompt("ingrese el número de pokemones a ver: "));
+let n = Number(prompt("ingrese el número de pokemones a ver (entre 1 y 1292): "));
 
 // para enviar informacion a mockapi
 const enviar =  async(estadistica)=>{
@@ -22,9 +22,18 @@ const cambiarId = async(id)=>{
 };
 
 const mostrar = (cantidad)=>{
-    for (let i = 1; i <= cantidad; i++) {
-        cambiarId(i)
-    }
+    if (cantidad <= 1292  && cantidad >= 1) {
+        for (let i = 1; i <= cantidad; i++) {
+            if (i <= 1017) {
+                cambiarId(i);  // después del id "1017" el siguiente id es "10001"
+            } else if (i <= 1292) {
+                cambiarId(i+8983);
+            } 
+        }
+    } else {
+        alert("número de pokemones erroneo");
+        location.reload();
+    }  
 };
 
 const mostrarPokemon = (pokemon)=>{
