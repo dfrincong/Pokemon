@@ -1,5 +1,5 @@
 const url = "https://pokeapi.co/api/v2/pokemon/";
-const urlMockApi = "https://650ee92e54d18aabfe999cc6.mockapi.io/pokemon/";
+const uri = "http://127.0.0.7:5013/pokemon";
 const myPokemones = document.querySelector(".cajaPokemones");
 let n = Number(prompt("ingrese el número de pokemones a ver (entre 1 y 1292): "));
 
@@ -10,7 +10,7 @@ const enviar =  async(estadistica)=>{
         headers: {"content-type":"application/json"},
         body: JSON.stringify(estadistica)
     };
-    let res = await (await fetch(urlMockApi, config)).json();
+    let res = await (await fetch(uri, config)).json();
     console.log(res);
 };
 

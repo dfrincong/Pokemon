@@ -1,0 +1,16 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "Pokemon es una página web interactiva que permite visualizar las imágenes y el nombre de los pokemones, el nombre de los pokemones es un botón que al darle click, abre una ventana de dialogo en la que se puede observar las habilidades y/o estadísticas del pokemon seleccionado y estas pueden modificarse moviendo las barras que allí se observan y posteriormente guardarlas.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "json-server --watch db.json --port 5013 --host 127.0.0.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "0.17.4"
+  }
+}
